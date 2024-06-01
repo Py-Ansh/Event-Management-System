@@ -45,24 +45,19 @@ By implementing these features, I aim to make the Event Manager a comprehensive 
     cd Event-Management-System
     ```
 
-2. Create and activate a virtual environment:
-    ```sh
-    python -m venv venv
-    source venv/bin/activate
-    ```
 
-3. Install the required packages:
+2. Install the required packages:
     ```sh
     pip install -r requirements.txt
     ```
 
-4. Apply migrations and run the server:
+3. Apply migrations and run the server:
     ```sh
     python manage.py migrate
     python manage.py runserver
     ```
 
-5. Open your browser and navigate to `http://127.0.0.1:8000` to see the application in action.
+4. Open your browser and navigate to `http://127.0.0.1:8000` to see the application in action.
 
 
 ## Usage
