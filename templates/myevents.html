@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}My Events{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+  <h3 class="my-5">Events I am participating in</h3>
+  {% for i in user_events %}
+  {% if i.completed != 1 %}
+  <div class="container mt-5">
+    <div class="card">
+      <h5 class="card-header d-flex justify-content-between">
+        <span>{{i.host}} presents</span>
+        <form action="/participants" method = "POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+        <button class="btn btn-link text-decoration-none border-0" style="background-color: transparent; border-color: transparent;"><h5>({{i.number_of_participants}})</h5></button>
+
+      </form>    
+    </h5>
+          <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}</p>
+        <p class="card-text">Cost : $ {{i.cost}}</p>
+        <p class="card-text">date : {{i.date}}</p>
+        <p class="card-text">time : {{i.time}}</p>
+        <p class="card-text">Place : {{i.place}}</p>
+
+        <form class="d-flex justify-content-end" action="/cancel_participation" method="POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+          <button class="btn ">Cancel Participation</button>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+
+  <div class="container mt-5">
+    <div class="card">
+      <h5 class="card-header d-flex justify-content-between">
+        <span>{{i.host}} presents ✅</span>
+        <form action="/participants" method = "POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+        <button class="btn btn-link text-decoration-none border-0" style="background-color: transparent; border-color: transparent;"><h5>({{i.number_of_participants}})</h5></button>
+
+      </form>    </h5>
+          <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}</p>
+        <p class="card-text">Cost : $ {{i.cost}}</p>
+        <p class="card-text">date : {{i.date}}</p>
+        <p class="card-text">time : {{i.time}}</p>
+        <p class="card-text">Place : {{i.place}}</p>
+
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+  {% endfor %}
+</div>
+
+
+
+
+
+<div class="container my-5">
+  <h3 class="my-5">Events I have hosted</h3>
+  {% for i in hosted_events%}
+  {% if i.completed != 1 %}
+  <div class="container mt-5">
+    <div class="card">
+      <h5 class="card-header d-flex justify-content-between">
+        <span>{{i.host}} presents</span>
+        <form action="/participants" method = "POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+        <button class="btn btn-link text-decoration-none border-0" style="background-color: transparent; border-color: transparent;"><h5>({{i.number_of_participants}})</h5></button>
+
+      </form>    </h5>     
+    <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}</p>
+        <p class="card-text">Cost : $ {{i.cost}}</p>
+        <p class="card-text">date : {{i.date}}</p>
+        <p class="card-text">time : {{i.time}}</p>
+        <p class="card-text">Place : {{i.place}}</p>
+      </div>
+
+      <div class="d-flex justify-content-end my-1">
+        <form action="/editevent" method="POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+          <input type="hidden" value="{{i.name}}" name="name">
+          <input type="hidden" name="desc" value="{{i.desc}}">
+          <input type="hidden" name="cost" value="{{i.cost}}">
+          <input type="hidden" name="date" value="{{i.date}}">
+          <input type="hidden" name="time" value="{{i.time}}">
+          <input type="hidden" name="place" value="{{i.place}}">
+          <button class="btn ">Edit Event Details</button>
+        </form>
+
+
+        <form action="/complete_event" method="POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+          <button class="btn mx-2">Mark as Completed</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  {% else %}
+
+  <div class="container mt-5">
+    <div class="card">
+      <h5 class="card-header d-flex justify-content-between">
+        <span>{{i.host}} presents ✅</span>
+        <form action="/participants" method = "POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+        <button class="btn btn-link text-decoration-none border-0" style="background-color: transparent; border-color: transparent;"><h5>({{i.number_of_participants}})</h5></button>
+
+      </form>    </h5>      
+    <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}</p>
+        <p class="card-text">Cost : $ {{i.cost}}</p>
+        <p class="card-text">date : {{i.date}}</p>
+        <p class="card-text">time : {{i.time}}</p>
+        <p class="card-text">Place : {{i.place}}</p>
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+
+  {% endfor %}
+</div>
+</div>
+
+
+
+
+{% endblock body %}

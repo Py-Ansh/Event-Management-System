@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Signup{% endblock title %}
+
+{% block body %}
+
+
+<style>
+  /* Custom container style */
+  .container-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(50vh - 56px); /* Adjust according to your navbar height */
+  }
+  /* Custom button style */
+  .custom-btn {
+    margin: 10px;
+  }
+  /* Custom section style */
+  .section {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #f8f9fa; /* Light gray background */
+  }
+  /* Custom header style */
+  .section-header {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #343a40; /* Dark text color */
+  }
+</style>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 section">
+      <h2 class="section-header">Welcome to Our Platform!</h2>
+      <p class="lead">Discover amazing events in Your Locality hosted by Your Neighbours</p>
+      <div class="container-buttons">
+        <button type="button" class="btn btn-lg  custom-btn" data-bs-toggle="modal" data-bs-target="#signup">
+          Signup
+        </button>
+        <button type="button" class="btn btn-lg  custom-btn" data-bs-toggle="modal" data-bs-target="#login">
+          Login
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!-- Modal for signup-->
+  <div class="modal fade" id="signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Signup</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="container mt-3">
+        <form method="POST" action="/signup">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name">      
+            </div>
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label for="username" class="form-label">User Name</label>
+                    <input type="text" class="form-control" id="uname" aria-describedby="emailHelp" name="u_name">
+                </div>
+                <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+        
+            <button type="submit" class="btn ">Submit</button>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+   <!-- Modal for login-->
+   <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Log in</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="container mt-3">
+        <form method="POST" action="/login">
+            {% csrf_token %}
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label for="username" class="form-label">User Name</label>
+                    <input type="text" class="form-control" id="uname" aria-describedby="emailHelp" name="u_name">
+                </div>
+                <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+        
+            <button type="submit" class="btn ">Submit</button>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+{% endblock body %}

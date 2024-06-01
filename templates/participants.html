@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{eventname}} - Participants{% endblock title %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 id="event-name">Participants</h1>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="mb-0">{{eventname}}</h2>
+        </div>
+        <ul class="list-group list-group-flush" id="participants">
+            
+            {% for i in participants %}
+            <li class="list-group-item">{{i.username}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock body %}

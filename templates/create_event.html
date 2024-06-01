@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block title %}Create an Event{% endblock title %}
+
+{% block body %}
+
+<div class="container mt-3">
+    <form method="POST" action="/create_event">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Name of Event</label>
+          <input type="text" class="form-control" id="nameofevent" aria-describedby="emailHelp" name="nameofevent" maxlength="100">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Details of Event</label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="desc">      
+        </div>
+        <div class="mb-3">
+            <div class="mb-3">
+                <label for="username" class="form-label">Cost</label>
+                <input type="number" class="form-control" id="uname" aria-describedby="emailHelp" name="cost" maxlength="10">
+            </div>
+            <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Venue</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" name="place" maxlength="100">
+
+          <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" value="{{ date }}">
+        </div>
+        <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="text" class="form-control" id="time" name="time" value="{{ time }}">
+        </div>
+        <button type="submit" class="btn ">Submit</button>
+      </form>
+    </div>
+
+{% endblock body %}

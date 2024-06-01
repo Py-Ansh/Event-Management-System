@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+
+{% for i in allevents %}
+
+{% if i not in user_events and i not in hosted_events %}
+
+{% if i.completed != 1 %}
+<div class="container">
+  <div class="container mt-5">
+    <div class="card">
+      <h5 class="card-header d-flex justify-content-between">
+        <span>{{i.host}} presents</span>
+
+        <form action="/participants" method = "POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+        <button class="btn btn-link text-decoration-none border-0" style="background-color: transparent; border-color: transparent;"><h5>({{i.number_of_participants}})</h5></button>
+
+      </form>
+
+      </h5>
+      <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}</p>
+        <p class="card-text">Cost : $ {{i.cost}}</p>
+        <p class="card-text">date : {{i.date}}</p>
+        <p class="card-text">time : {{i.time}}</p>
+        <p class="card-text">Place : {{i.place}}</p>
+
+        <form class="d-flex justify-content-end" method="POST" action="/dummypayment">
+          {% csrf_token %}
+
+          <!-- Hidden input fields for each attribute -->
+          <input type="hidden" name="eventid" value="{{ i.eventID }}">
+          <button type="submit" class="btn">Pay & Participate</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% else %}
+
+<div class="container">
+  <div class="container mt-5">
+    <div class="card">
+      <h5 class="card-header d-flex justify-content-between">
+        <span>{{i.host}} presents ✅</span>
+        <form action="/participants" method = "POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+        <button class="btn btn-link text-decoration-none border-0" style="background-color: transparent; border-color: transparent;"><h5>({{i.number_of_participants}})</h5></button>
+
+      </form>
+      </h5>
+      <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}</p>
+        <p class="card-text">Cost : $ {{i.cost}}</p>
+        <p class="card-text">date : {{i.date}}</p>
+        <p class="card-text">time : {{i.time}}</p>
+        <p class="card-text">Place : {{i.place}}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+{% else %}
+
+{% if i.completed != 1 %}
+<div class="container">
+  <div class="container mt-5">
+    <div class="card">
+      <h5 class="card-header d-flex justify-content-between">
+        <span>{{i.host}} presents (Your Event)</span>
+        <form action="/participants" method = "POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+        <button class="btn btn-link border-0 text-decoration-none" style="background-color: transparent; border-color: transparent;"><h5>({{i.number_of_participants}})</h5></button>
+      </form>
+          </h5>
+      <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}</p>
+        <p class="card-text">Cost : $ {{i.cost}}</p>
+        <p class="card-text">date : {{i.date}}</p>
+        <p class="card-text">time : {{i.time}}</p>
+        <p class="card-text">Place : {{i.place}}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% else %}
+
+<div class="container">
+  <div class="container mt-5">
+    <div class="card">
+      <h5 class="card-header d-flex justify-content-between">
+        <span>{{i.host}} presents (Your event) ✅</span>
+        <form action="/participants" method = "POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+        <button class="btn btn-link text-decoration-none border-0" style="background-color: transparent; border-color: transparent;"><h5>({{i.number_of_participants}})</h5></button>
+
+      </form>
+          </h5>
+      <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}</p>
+        <p class="card-text">Cost : $ {{i.cost}}</p>
+        <p class="card-text">date : {{i.date}}</p>
+        <p class="card-text">time : {{i.time}}</p>
+        <p class="card-text">Place : {{i.place}}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endif %}
+
+{% endif %}
+{% endfor %}
+
+{% endblock body %}

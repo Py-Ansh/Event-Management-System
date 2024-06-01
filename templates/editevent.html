@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Edit - {{name}}{% endblock title %}
+
+{% block body %}
+
+
+<div class="container mt-3">
+    <form method="POST" action="/fill_edit_details">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="nameofevent" class="form-label">Name of Event</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ name }}" maxlength="100">
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Details of Event</label>
+            <input type="text" class="form-control" id="desc" name="desc" value="{{ desc }}">      
+        </div>
+        <div class="mb-3">
+            <label for="cost" class="form-label">Cost</label>
+            <input type="number" class="form-control" id="cost" name="cost" value="{{ cost }}" maxlength="10">
+        </div>
+        <div class="mb-3">
+            <label for="place" class="form-label">Venue</label>
+            <input type="text" class="form-control" id="place" name="place" value="{{ place }}" maxlength="100">
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" value="{{ date }}">
+        </div>
+        <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="text" class="form-control" id="time" name="time" value="{{ time }}">
+        </div>
+
+        <input type="hidden" class="form-control" id="eventID" name="eventID" value="{{ eventID }}">
+
+        <button type="submit" class="btn ">Submit</button>
+    </form>
+    </div>
+
+
+
+{% endblock body %}
