@@ -42,7 +42,7 @@ By implementing these features, I aim to make the Event Manager a comprehensive 
 1. Clone the repository:
     ```sh
     git clone https://github.com/Py-Ansh/Event-Management-System.git
-    cd event-manager
+    cd Event-Management-System
     ```
 
 2. Create and activate a virtual environment:
