@@ -31,3 +31,15 @@ class Participants(models.Model):
     def __str__(self):
         return f"{self.username} - {self.eventID}"
     
+
+class Comments(models.Model):
+    sno = models.AutoField(primary_key=True)
+    eventID = models.CharField(max_length=10)
+    username = models.CharField(max_length=100)
+    desc = models.TextField()
+
+
+    def __str__(self):
+        return f"{self.username} commented on Event no - {self.eventID}"
+    
+

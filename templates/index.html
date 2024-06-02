@@ -13,7 +13,12 @@
   <div class="container mt-5">
     <div class="card">
       <h5 class="card-header d-flex justify-content-between">
-        <span>{{i.host}} presents</span>
+        
+        <form action="/q_and_a" method="GET">
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+          <button class="btn btn-link border-0 text-decoration-none" style="background-color: transparent; border-color: transparent;"><h5>{{i.host}} presents</h5></button>
+        </form>
+
 
         <form action="/participants" method = "POST">
           {% csrf_token %}
@@ -50,7 +55,13 @@
   <div class="container mt-5">
     <div class="card">
       <h5 class="card-header d-flex justify-content-between">
-        <span>{{i.host}} presents ✅</span>
+
+        <form action="/q_and_a" method="GET">
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+          <button class="btn btn-link border-0 text-decoration-none" style="background-color: transparent; border-color: transparent;"><h5>{{i.host}} presents ✅</h5></button>
+        </form>
+
+
         <form action="/participants" method = "POST">
           {% csrf_token %}
           <input type="hidden" value="{{i.eventID}}" name="eventID">
@@ -80,7 +91,12 @@
   <div class="container mt-5">
     <div class="card">
       <h5 class="card-header d-flex justify-content-between">
-        <span>{{i.host}} presents (Your Event)</span>
+
+      <form action="/q_and_a" method="GET">
+        <input type="hidden" value="{{i.eventID}}" name="eventID">
+        <button class="btn btn-link border-0 text-decoration-none" style="background-color: transparent; border-color: transparent;"><h5>{{i.host}} presents (Your Event)</h5></button>
+      </form>
+
         <form action="/participants" method = "POST">
           {% csrf_token %}
           <input type="hidden" value="{{i.eventID}}" name="eventID">
@@ -106,7 +122,13 @@
   <div class="container mt-5">
     <div class="card">
       <h5 class="card-header d-flex justify-content-between">
-        <span>{{i.host}} presents (Your event) ✅</span>
+
+        <form action="/q_and_a" method="GET">
+          <input type="hidden" value="{{i.eventID}}" name="eventID">
+          <button class="btn btn-link border-0 text-decoration-none" style="background-color: transparent; border-color: transparent;"><h5>{{i.host}} presents (Your event) ✅</h5></button>
+        </form>
+
+
         <form action="/participants" method = "POST">
           {% csrf_token %}
           <input type="hidden" value="{{i.eventID}}" name="eventID">

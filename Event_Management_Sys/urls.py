@@ -42,5 +42,7 @@ urlpatterns = [
 
     path("complete_event", mark_as_completed),
 
-    path("participants", participants)
+    path("participants", participants),
+
+    path("q_and_a", q_and_a, name="q_and_a")
 ]

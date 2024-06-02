@@ -334,3 +334,40 @@ def participants(request):
     
     else:
         return HttpResponse("404")
+    
+
+
+def q_and_a(request):
+    if request.user.is_authenticated:
+
+        if request.method == "POST":
+
+            eventID = request.POST["eventID"]
+            username = request.user.username
+            desc = request.POST["desc"]
+
+            MyQuestion = Comments(eventID = eventID, username = username, desc = desc)
+            MyQuestion.save()
+
+            messages.success(request, "Your Question is posted successfully!")
+
+
+        eventID = request.GET["eventID"]
+
+        event = Event.objects.get(eventID = eventID)
+
+        comments = Comments.objects.filter(eventID = eventID)
+
+        context = {"event" : event, "comments" : comments}
+
+        return render(request, "QnA.html", context = context)
+    
+
+    
+
+    else:
+        return HttpResponse("404")
+    
+
+
+
